@@ -3,21 +3,12 @@ socket = io.connect("https://audiencepoll.herokuapp.com/");
 
 $(document).ready(function(){
   loadPage("login");
-  var url = window.location.href;
-  console.log(url);
-  if(location.search == "admin"){
-    loadPage("admin")
-}
-  // $.get('/login', function(data){
-  //   console.log("login page");
-  //   loadPage(data);
-  // })
 })
 
-$.get('/admin', function(data){
-  console.log("admin page");
-  loadPage(data);
-})
+socket.on(‘sampleData’, gotSampleData);
+function gotSampleData(data) {
+	console.log(data);
+}
 
 function loadPage(page){
   switch (page) {
