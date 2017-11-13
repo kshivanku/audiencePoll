@@ -1,2 +1,2 @@
 var socket;
-socket = io.connect("http://localhost:8000");
+socket = io.connect("https://audiencepoll.herokuapp.com/");
