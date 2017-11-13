@@ -1,8 +1,8 @@
 var express = require('express');
 var fs = require('fs');
 var app = express();
-var server = app.listen(8000, function(){
-  console.log('listening on port 8000');
+var server = app.listen(process.env.PORT || 8000, function(){
+  console.log('serverstarted');
 })
 
 app.use(express.static("public"));
