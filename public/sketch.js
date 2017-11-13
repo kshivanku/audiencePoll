@@ -5,7 +5,7 @@ $(document).ready(function(){
   loadPage("login");
 })
 
-socket.on(‘sampleData’, gotSampleData);
+socket.on('sampleData', gotSampleData);
 function gotSampleData(data) {
 	console.log(data);
 }
