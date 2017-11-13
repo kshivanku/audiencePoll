@@ -7,6 +7,14 @@ var server = app.listen(process.env.PORT || 8000, function(){
 
 app.use(express.static("public"));
 
+// app.get('/login', function(req, res){
+//   res.send("login");
+// });
+//
+// app.get('/admin', function(req, res){
+//   res.send("admin");
+// });
+
 var socket = require('socket.io');
 var io = socket(server);
 
