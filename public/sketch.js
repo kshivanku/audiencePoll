@@ -31,7 +31,7 @@ function saveNewUser(name) {
   });
 }
 function postsuccess(data) {
-  console.log(data)
+  console.log(data);
 }
 
 function loadPage(page){

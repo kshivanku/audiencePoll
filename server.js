@@ -28,6 +28,6 @@ io.sockets.on('connection', function(socket){
 //Add new user to a file
 app.post('/newUser', function(req, res) {
   console.log("inside post request");
-  console.log(req.body);
-  res.send("Name that you sent me is: " + req.body.data);
+  console.log(req.body.name);
+  res.send("Name that you sent me is: " + req.body.name);
 })
