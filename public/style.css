@@ -5,7 +5,10 @@
   cursor: pointer;
 }
 
+#questionForm input {
+  margin: 10px 0 10px 0;
+}
+
 #questionForm label{
-  display: inline-block;
-  font-weight: bold;
+  margin-left: 10px;
 }

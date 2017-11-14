@@ -3,8 +3,7 @@ socket = io.connect("https://audiencepoll.herokuapp.com/");
 
 socket.on('questionData', gotQuestionData);
 function gotQuestionData(data) {
-  console.log("got question data:");
-  console.log(data);
+  $("#loader").css("display", "none");
 	$("#question_text").html(data.question_text);
   $("[for=" + $("#option1").attr("id") + "]").html(data.option1);
   $("[for=" + $("#option2").attr("id") + "]").html(data.option2);
@@ -36,6 +35,8 @@ $(document).ready(function(){
   })
 
   $("#questionForm").submit(function(event){
+    $("#loader").css("display", "block");
+    $("#questionForm").css("display", "none");
     event.preventDefault();
     answer = $('input[name=option]:checked').attr('id');
     //saveToDb(database.ref("allusers/" + username), answer, "question");
@@ -59,6 +60,8 @@ function loadPage(page){
     case "survey_page":
       $("#survey_page").css("display", "block");
       $("#login").css("display", "none");
+      $("#loader").css("display", "block");
+      $("#questionForm").css("display", "none");
       break;
   }
 }
