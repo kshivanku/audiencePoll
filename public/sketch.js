@@ -1,8 +1,12 @@
+var username;
+var current_question;
+
 var socket;
 socket = io.connect("https://audiencepoll.herokuapp.com/");
 
 socket.on('questionData', gotQuestionData);
 function gotQuestionData(data) {
+  current_question = data;
   $("#loader").css("display", "none");
   $("#questionForm").css("display", "block");
 	$("#question_text").html(data.question_text);
@@ -10,6 +14,7 @@ function gotQuestionData(data) {
   $("[for=" + $("#option2").attr("id") + "]").html(data.option2);
   $("[for=" + $("#option3").attr("id") + "]").html(data.option3);
   $("[for=" + $("#option4").attr("id") + "]").html(data.option4);
+
 }
 
 // Initialize Firebase
@@ -25,8 +30,6 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var allusers = database.ref('allusers');
 
-var username;
-
 $(document).ready(function(){
   loadPage("login");
   $("#usernameForm").submit(function(event){
@@ -39,15 +42,17 @@ $(document).ready(function(){
     $("#loader").css("display", "block");
     $("#questionForm").css("display", "none");
     event.preventDefault();
-    answer = $('input[name=option]:checked').attr('id');
-    //saveToDb(database.ref("allusers/" + username), answer, "question");
+    var answerKey = $('input[name=option]:checked').attr('id');
+    var question = current_question.question_text;
+    var answer = current_question[answerKey];
+    saveToDb(database.ref("allusers/" + username), answer, "question");
     return false;
   })
 })
 
-function saveToDb(key, value, dataType) {
+function saveToDb(key, answer, question) {
     var reqbody = {};
-    reqbody[dataType] = value;
+    reqbody[question] = answer;
     key.push(reqbody);
   }
 
