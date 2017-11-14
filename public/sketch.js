@@ -3,6 +3,8 @@ socket = io.connect("https://audiencepoll.herokuapp.com/");
 
 socket.on('questionData', gotQuestionData);
 function gotQuestionData(data) {
+  console.log("got question data:");
+  console.log(data);
 	$("#question_text").html(data.question_text);
   $("#option1").html(data.option1);
   $("#option2").html(data.option2);
