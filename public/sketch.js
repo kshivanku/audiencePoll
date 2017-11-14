@@ -8,7 +8,7 @@ var config = {
   databaseURL: "https://audiencepoll-7e23c.firebaseio.com",
   projectId: "audiencepoll-7e23c",
   storageBucket: "audiencepoll-7e23c.appspot.com",
-  messagingSenderId: "580263770976"
+  messagingSenderId: "580263770976",
   "rules": {
     ".read": true,
     ".write": true
