@@ -3,7 +3,11 @@ socket = io.connect("https://audiencepoll.herokuapp.com/");
 
 socket.on('questionData', gotQuestionData);
 function gotQuestionData(data) {
-	console.log(data);
+	$("#question_text").html(data.question_text);
+  $("#option1").html(data.option1);
+  $("#option2").html(data.option2);
+  $("#option3").html(data.option3);
+  $("#option4").html(data.option4);
 }
 
 // Initialize Firebase
@@ -31,8 +35,9 @@ $(document).ready(function(){
 
   $("#questionForm").submit(function(event){
     event.preventDefault();
-    answer = $("#question").val();
-    saveToDb(database.ref("allusers/" + username), answer, "question");
+    answer = $("input[name=option]:checked").val();
+    console.log(answer);
+    // saveToDb(database.ref("allusers/" + username), answer, "question");
     return false;
   })
 })
