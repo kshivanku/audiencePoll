@@ -27,11 +27,11 @@ $("#loginForm").submit(function(event){
   loadPage("survey_page");
 })
 
-$("#questionForm").submit(function(event)){
+$("#questionForm").submit(function(event){
   event.preventDefault();
   height = $("#height").val();
   saveToDb(userkey, height, "height");
-}
+})
 
 socket.on('sampleData', gotSampleData);
 function gotSampleData(data) {
