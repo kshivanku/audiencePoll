@@ -9,10 +9,6 @@ var config = {
   projectId: "audiencepoll-7e23c",
   storageBucket: "audiencepoll-7e23c.appspot.com",
   messagingSenderId: "580263770976",
-  "rules": {
-    ".read": true,
-    ".write": true
-  }
 };
 firebase.initializeApp(config);
 var database = firebase.database();
