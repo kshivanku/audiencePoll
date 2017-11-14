@@ -4,6 +4,7 @@ socket = io.connect("https://audiencepoll.herokuapp.com/");
 socket.on('questionData', gotQuestionData);
 function gotQuestionData(data) {
   $("#loader").css("display", "none");
+  $("#questionForm").css("display", "block");
 	$("#question_text").html(data.question_text);
   $("[for=" + $("#option1").attr("id") + "]").html(data.option1);
   $("[for=" + $("#option2").attr("id") + "]").html(data.option2);
