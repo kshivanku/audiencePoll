@@ -1,8 +1,8 @@
 var socket;
 socket = io.connect("https://audiencepoll.herokuapp.com/");
 
-socket.on('sampleData', gotSampleData);
-function gotSampleData(data) {
+socket.on('questionData', gotQuestionData);
+function gotQuestionData(data) {
 	console.log(data);
 }
 

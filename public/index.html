@@ -13,10 +13,6 @@
   <body>
     <div id="login">
       <h1>Dictate the date</h1>
-        <!-- <p>Give yourself an alias:</p>
-        <input type="text" id="username" required><br>
-        <div id="enterSurvey">Enter</div> -->
-
         <form id="usernameForm">
           Give yourself an alias:
           <input type="text" id="username">
@@ -26,7 +22,11 @@
     <div id="survey_page">
       <p>please wait for a question...</p>
       <form id="questionForm">
-        <input type="text" id="question" required>
+        <h2 id="question_text"></h2>
+        <input type="radio" id="option1">
+        <input type="radio" id="option2">
+        <input type="radio" id="option3">
+        <input type="radio" id="option4">
         <input type="submit" value="Enter">
       </form>
     </div>
