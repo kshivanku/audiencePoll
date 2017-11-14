@@ -21,6 +21,7 @@ function saveNewUser(name) {
   var username = {
     'name' : name
   }
+  console.log("Making a post request with: ", username);
   $.ajax({
     type: "POST",
     url: '/newUser',
@@ -29,7 +30,6 @@ function saveNewUser(name) {
     dataType: JSON
   });
 }
-
 function postsuccess(data) {
   console.log(data)
 }
