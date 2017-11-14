@@ -4,3 +4,8 @@
   border: 1px solid black;
   cursor: pointer;
 }
+
+#questionForm label{
+  display: inline-block;
+  font-weight: bold;
+}

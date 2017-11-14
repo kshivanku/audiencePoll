@@ -6,10 +6,10 @@ function gotQuestionData(data) {
   console.log("got question data:");
   console.log(data);
 	$("#question_text").html(data.question_text);
-  $("#option1").html(data.option1);
-  $("#option2").html(data.option2);
-  $("#option3").html(data.option3);
-  $("#option4").html(data.option4);
+  $("[for=" + $("option1").attr("id") + "]").html(data.option1);
+  $("[for=" + $("option2").attr("id") + "]").html(data.option2);
+  $("[for=" + $("option3").attr("id") + "]").html(data.option3);
+  $("[for=" + $("option4").attr("id") + "]").html(data.option4);
 }
 
 // Initialize Firebase
@@ -37,9 +37,8 @@ $(document).ready(function(){
 
   $("#questionForm").submit(function(event){
     event.preventDefault();
-    answer = $("input[name=option]:checked").val();
-    console.log(answer);
-    // saveToDb(database.ref("allusers/" + username), answer, "question");
+    answer = $('input[name=option]:checked').attr('id');
+    //saveToDb(database.ref("allusers/" + username), answer, "question");
     return false;
   })
 })
