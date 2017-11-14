@@ -35,7 +35,7 @@ function saveNewUser(name) {
   reqbody = {
     'name' : name
   }
-  allusers.push(data);
+  allusers.push(reqbody);
   $.ajax({
     type: "POST",
     url: '/newUser',
