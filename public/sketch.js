@@ -26,12 +26,8 @@ function saveNewUser(name) {
     type: "POST",
     url: '/newUser',
     data: username,
-    success: postsuccess,
     dataType: JSON
   });
-}
-function postsuccess(data) {
-  console.log(data);
 }
 
 function loadPage(page){
