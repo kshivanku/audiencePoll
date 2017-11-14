@@ -32,7 +32,7 @@ $(document).ready(function(){
   $("#questionForm").submit(function(event){
     event.preventDefault();
     answer = $("#question").val();
-    saveToDb(database.ref(username), answer, "question");
+    saveToDb(database.ref("allusers/" + username), answer, "question");
     return false;
   })
 })
