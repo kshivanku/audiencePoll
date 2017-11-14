@@ -45,7 +45,10 @@ $(document).ready(function(){
     var answerKey = $('input[name=option]:checked').attr('id');
     var question = current_question.question_text;
     var answer = current_question[answerKey];
-    saveToDb(database.ref("allusers/" + username), answer, "question");
+    console.log("form submitted");
+    console.log("question: ", question);
+    console.log("answer: ", answer);
+    saveToDb(database.ref("allusers/" + username), answer, question);
     return false;
   })
 })
