@@ -1,6 +1,11 @@
 var socket;
 socket = io.connect("https://audiencepoll.herokuapp.com/");
 
+socket.on('sampleData', gotSampleData);
+function gotSampleData(data) {
+	console.log(data);
+}
+
 // Initialize Firebase
 var config = {
   apiKey: "AIzaSyDB7c6Uf8dcA5m8jrWEyjKSPK7crGENyyQ",
@@ -21,6 +26,7 @@ $(document).ready(function(){
 })
 
 $("#loginForm").submit(function(event){
+  console.log("login form submit button clicked");
   event.preventDefault();
   var username = $("#username").val();
   saveToDb(allusers, username, "name");
@@ -33,18 +39,15 @@ $("#questionForm").submit(function(event){
   saveToDb(userkey, height, "height");
 })
 
-socket.on('sampleData', gotSampleData);
-function gotSampleData(data) {
-	console.log(data);
-}
-
 function saveToDb(key, value, dataType) {
   if(dataType == "name"){
     var reqbody = {
       'name' : value
     }
+    console.log("Saving to db: " + reqbody);
     var result = key.push(reqbody);
     userkey = result.key;
+    console.log("userkey: " + userkey);
   }
   else if(dataType == "height") {
     var reqbody = {
@@ -64,5 +67,6 @@ function loadPage(page){
     case "survey_page":
       $("#survey_page").css("display", "block");
       $("#login").css("display", "none");
+      break;
   }
 }
