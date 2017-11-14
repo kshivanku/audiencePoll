@@ -6,10 +6,10 @@ function gotQuestionData(data) {
   console.log("got question data:");
   console.log(data);
 	$("#question_text").html(data.question_text);
-  $("[for=" + $("option1").attr("id") + "]").html(data.option1);
-  $("[for=" + $("option2").attr("id") + "]").html(data.option2);
-  $("[for=" + $("option3").attr("id") + "]").html(data.option3);
-  $("[for=" + $("option4").attr("id") + "]").html(data.option4);
+  $("[for=" + $("#option1").attr("id") + "]").html(data.option1);
+  $("[for=" + $("#option2").attr("id") + "]").html(data.option2);
+  $("[for=" + $("#option3").attr("id") + "]").html(data.option3);
+  $("[for=" + $("#option4").attr("id") + "]").html(data.option4);
 }
 
 // Initialize Firebase
