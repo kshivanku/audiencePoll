@@ -19,13 +19,6 @@ body {
   font-size: 24px;
 }
 
-.submitBtn {
-  display: block;
-  margin: auto;
-  width: 100px;
-  line-height: 18px;
-}
-
 #enterSurvey {
   width: 100%;
   height: 50px;
@@ -34,9 +27,16 @@ body {
 }
 
 #questionForm input {
-  margin: 10px 0 10px 0;
+  margin: 10px 0 20px 0;
 }
 
 #questionForm label{
   margin-left: 10px;
+}
+
+.submitBtn {
+  display: block;
+  margin: auto;
+  width: 100px;
+  padding: 20px;
 }
