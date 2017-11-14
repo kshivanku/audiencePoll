@@ -54,9 +54,6 @@ $(document).ready(function(){
 })
 
 function saveToDb(key, answer, question) {
-  console.log("inside save to db");
-  console.log("question: ", question);
-  console.log("answer: ", answer);
   var reqbody = {};
   reqbody[question] = answer;
   key.push(reqbody);
