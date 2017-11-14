@@ -2,7 +2,7 @@ body {
   font-family: sans-serif;
   color: #212121;
   padding: 10px 32px;
-  width: 960px;
+  max-width: 960px;
   margin: auto;
 }
 
