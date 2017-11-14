@@ -1,8 +1,22 @@
 var socket;
 socket = io.connect("https://audiencepoll.herokuapp.com/");
 
+var name_error = "You have to have an alias!"
+
 $(document).ready(function(){
   loadPage("login");
+  $("#loginForm").submit(function(event){
+    event.preventDefault();
+    var username = $("#username").val();
+    // $.ajax({
+    //   type: "POST",
+    //   url: url,
+    //   data: username,
+    //   success: success,
+    //   dataType: dataType
+    // });
+    loadPage("survey_page");
+  })
 })
 
 socket.on('sampleData', gotSampleData);
@@ -13,11 +27,11 @@ function gotSampleData(data) {
 function loadPage(page){
   switch (page) {
     case "login":
-      $("#admin").css("display", "none");
+      $("#survey_page").css("display", "none");
       $("#login").css("display", "block");
       break;
-    case "admin":
-      $("#admin").css("display", "block");
+    case "survey_page":
+      $("#survey_page").css("display", "block");
       $("#login").css("display", "none");
   }
 }
