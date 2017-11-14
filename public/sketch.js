@@ -7,14 +7,7 @@ $(document).ready(function(){
   loadPage("login");
   $("#loginForm").submit(function(event){
     event.preventDefault();
-    var username = $("#username").val();
-    // $.ajax({
-    //   type: "POST",
-    //   url: url,
-    //   data: username,
-    //   success: success,
-    //   dataType: dataType
-    // });
+    saveNewUser($("#username").val());
     loadPage("survey_page");
   })
 })
@@ -22,6 +15,23 @@ $(document).ready(function(){
 socket.on('sampleData', gotSampleData);
 function gotSampleData(data) {
 	console.log(data);
+}
+
+function saveNewUser(name) {
+  var username = {
+    'name' : name
+  }
+  $.ajax({
+    type: "POST",
+    url: '/newUser',
+    data: username,
+    success: postsuccess,
+    dataType: JSON
+  });
+}
+
+function postsuccess(data) {
+  console.log(data)
 }
 
 function loadPage(page){
