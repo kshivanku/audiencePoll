@@ -14,34 +14,45 @@ firebase.initializeApp(config);
 var database = firebase.database();
 var allusers = database.ref('allusers');
 
-var username;
+var userkey;
 
 $(document).ready(function(){
   loadPage("login");
-  $("#loginForm").submit(function(event){
-    event.preventDefault();
-    username = $("#username").val();
-    saveNewUser(username);
-    loadPage("survey_page");
-  })
 })
+
+$("#loginForm").submit(function(event){
+  event.preventDefault();
+  var username = $("#username").val();
+  saveToDb(allusers, username, "name");
+  loadPage("survey_page");
+})
+
+$("#questionForm").submit(function(event)){
+  event.preventDefault();
+  height = $("#height").val();
+  saveToDb(userkey, height, "height");
+}
 
 socket.on('sampleData', gotSampleData);
 function gotSampleData(data) {
 	console.log(data);
 }
 
-function saveNewUser(name) {
-  reqbody = {
-    'name' : name
+function saveToDb(key, value, dataType) {
+  if(dataType == "name"){
+    var reqbody = {
+      'name' : value
+    }
+    var result = key.push(reqbody);
+    userkey = result.key;
   }
-  allusers.push(reqbody);
-  $.ajax({
-    type: "POST",
-    url: '/newUser',
-    data: reqbody,
-    dataType: JSON
-  });
+  else if(dataType == "height") {
+    var reqbody = {
+      'height': value
+    }
+    key.push(reqbody);
+  }
+
 }
 
 function loadPage(page){
