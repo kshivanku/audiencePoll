@@ -1,13 +1,27 @@
 var socket;
 socket = io.connect("https://audiencepoll.herokuapp.com/");
 
-var name_error = "You have to have an alias!"
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyDB7c6Uf8dcA5m8jrWEyjKSPK7crGENyyQ",
+  authDomain: "audiencepoll-7e23c.firebaseapp.com",
+  databaseURL: "https://audiencepoll-7e23c.firebaseio.com",
+  projectId: "audiencepoll-7e23c",
+  storageBucket: "audiencepoll-7e23c.appspot.com",
+  messagingSenderId: "580263770976"
+};
+firebase.initializeApp(config);
+var database = firebase.database();
+var allusers = database.ref('allusers');
+
+var username;
 
 $(document).ready(function(){
   loadPage("login");
   $("#loginForm").submit(function(event){
     event.preventDefault();
-    saveNewUser($("#username").val());
+    username = $("#username").val();
+    saveNewUser(username);
     loadPage("survey_page");
   })
 })
@@ -18,14 +32,14 @@ function gotSampleData(data) {
 }
 
 function saveNewUser(name) {
-  var username = {
+  reqbody = {
     'name' : name
   }
-  console.log("Making a post request with: ", username);
+  allusers.push(data);
   $.ajax({
     type: "POST",
     url: '/newUser',
-    data: username,
+    data: reqbody,
     dataType: JSON
   });
 }
