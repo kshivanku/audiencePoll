@@ -28,9 +28,9 @@ $(document).ready(function(){
 $("#loginForm").submit(function(event){
   console.log("login form submit button clicked");
   event.preventDefault();
-  var username = $("#username").val();
-  saveToDb(allusers, username, "name");
   loadPage("survey_page");
+  var username = $("#username").val();
+  // saveToDb(allusers, username, "name");
 })
 
 $("#questionForm").submit(function(event){
