@@ -22,6 +22,7 @@ var current_question;
 
 //**************************//
 
+//PREVENT RELOAD
 window.onbeforeunload = function() {
     console.log("Trying to refresh");
     return "Refreshing the page will end your session and make us sad. Please don't refresh.";
@@ -31,7 +32,7 @@ $(document).ready(function() {
     loadPage("login_page");
     $("#usernameForm").submit(function(event) {
         loadPage("chat_page");
-        username = $("#username").val(); //sets the name of the user as a global variable
+        username = $("#username").val();
         profileColor = getRandomColor();
         $("#chat_page_header h1").html(username);
         $("#profileColor").css('background-color', profileColor);
@@ -48,12 +49,12 @@ $(document).ready(function() {
         var question = current_question.question_text;
         var answer = current_question[answerKey];
         saveToDb(database.ref("allusers/" + username), answer, question);
-        var answerContent = {
+        var messageContent = {
             "username": username,
             "profileColor": profileColor,
-            "answer": answer
+            "message": answer
         }
-        socket.emit('answerContent', answerContent);
+        socket.emit('userChatMessage', messageContent);
         return false;
     })
 })
@@ -70,26 +71,28 @@ function gotQuestionData(data) {
     $("[for=" + $("#option3").attr("id") + "]").html(data.option3);
     $("[for=" + $("#option4").attr("id") + "]").html(data.option4);
     //For chat body
-    var chatNameDiv = "<div class='chatNameDiv'>Admin</div>";
-    var answerDiv = "<div class='answerDiv'>" + data.question_text + "</div>";
-    $("#chat_body").append("<div class='adminChatEntry'>" + chatNameDiv + answerDiv + "</div>");
+    gotAdminChatMessage(data.question_text);
+
+    // var chatNameDiv = "<div class='chatNameDiv'>Admin</div>";
+    // var chatMessageDiv = "<div class='chatMessageDiv'>" + data.question_text + "</div>";
+    // $("#chat_body").append("<div class='adminChatEntry'>" + chatNameDiv + chatMessageDiv + "</div>");
 }
 
-socket.on('answerContent', gotAnswerData);
-function gotAnswerData(data) {
+socket.on('userChatMessage', gotUserChatMessage);
+function gotUserChatMessage(data) {
     console.log(data);
     var chatPicDiv = "<div class='chatPicDiv " + data.username + "DP'></div>"
     var chatNameDiv = "<div class='chatNameDiv'>" + data.username + "</div>"
-    var answerDiv = "<div class='answerDiv'>" + data.answer + "</div>"
-    $("#chat_body").append("<div class='userChatEntry'>" + chatPicDiv + chatNameDiv + answerDiv + "</div>");
+    var chatMessageDiv = "<div class='chatMessageDiv'>" + data.message + "</div>"
+    $("#chat_body").append("<div class='userChatEntry'>" + chatPicDiv + chatNameDiv + chatMessageDiv + "</div>");
     $("." + data.username + "DP").css("background-color", data.profileColor);
 }
 
-socket.on('welcomeMessage', gotWelcomeMessage);
-function gotWelcomeMessage(data) {
+socket.on('adminChatMessage', gotAdminChatMessage);
+function gotAdminChatMessage(data) {
     var chatNameDiv = "<div class='chatNameDiv'>Admin</div>";
-    var answerDiv = "<div class='answerDiv'>" + data + "</div>";
-    $("#chat_body").append("<div class='adminChatEntry'>" + chatNameDiv + answerDiv + "</div>");
+    var chatMessageDiv = "<div class='chatMessageDiv'>" + data + "</div>";
+    $("#chat_body").append("<div class='adminChatEntry'>" + chatNameDiv + chatMessageDiv + "</div>");
 }
 
 function saveToDb(key, answer, question) {

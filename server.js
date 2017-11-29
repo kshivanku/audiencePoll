@@ -15,16 +15,16 @@ io.sockets.on('connection', function(socket) {
     console.log('connected: ' + socket.id);
     socket.on('newUserJoined', function(data){
       console.log("new user joined");
-      io.sockets.emit('welcomeMessage', data);
+      io.sockets.emit('adminChatMessage', data);
     });
     socket.on('questionData', function(data) {
         console.log("got question data");
         socket.broadcast.emit('questionData', data);
     });
-    socket.on('answerContent', function(data) {
-        console.log("got answer content");
+    socket.on('userChatMessage', function(data) {
+        console.log("got user chat content");
         //send the answer content to all connections including the sending client
-        io.sockets.emit('answerContent', data);
+        io.sockets.emit('userChatMessage', data);
     });
 })
 
