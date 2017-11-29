@@ -66,26 +66,26 @@ function gotQuestionData(data) {
     $("[for=" + $("#option3").attr("id") + "]").html(data.option3);
     $("[for=" + $("#option4").attr("id") + "]").html(data.option4);
     //For chat body
-    var chatNameDiv = "<div id='chatNameDiv'>Admin</div>";
-    var answerDiv = "<div id='answerDiv'>" + data.question_text + "</div>";
-    $("#chat_body").append("<div id='adminChatEntry'>" + chatNameDiv + answerDiv + "</div>");
+    var chatNameDiv = "<div class='chatNameDiv'>Admin</div>";
+    var answerDiv = "<div class='answerDiv'>" + data.question_text + "</div>";
+    $("#chat_body").append("<div class='adminChatEntry'>" + chatNameDiv + answerDiv + "</div>");
 }
 
 socket.on('answerContent', gotAnswerData);
 function gotAnswerData(data) {
   console.log(data);
-  var chatPicDiv = "<div class='chatPicDiv' id= "+ data.username +"DP></div>"
-  var chatNameDiv = "<div id='chatNameDiv'>" + data.username + "</div>"
-  var answerDiv = "<div id='answerDiv'>" + data.answer + "</div>"
-  $("#chat_body").append("<div id='userChatEntry'>" + chatPicDiv + chatNameDiv + answerDiv + "</div>");
-  $("#" + data.username + "DP").css("background-color", data.profileColor);
+  var chatPicDiv = "<div class='chatPicDiv " + data.username +"DP'></div>"
+  var chatNameDiv = "<div class='chatNameDiv'>" + data.username + "</div>"
+  var answerDiv = "<div class='answerDiv'>" + data.answer + "</div>"
+  $("#chat_body").append("<div class='userChatEntry'>" + chatPicDiv + chatNameDiv + answerDiv + "</div>");
+  $("." + data.username + "DP").css("background-color", data.profileColor);
 }
 
 socket.on('welcomeMessage', gotWelcomeMessage);
 function gotWelcomeMessage(data) {
-  var chatNameDiv = "<div id='chatNameDiv'>Admin</div>";
-  var answerDiv = "<div id='answerDiv'>" + data + "</div>";
-  $("#chat_body").append("<div id='adminChatEntry'>" + chatNameDiv + answerDiv + "</div>");
+  var chatNameDiv = "<div class='chatNameDiv'>Admin</div>";
+  var answerDiv = "<div class='answerDiv'>" + data + "</div>";
+  $("#chat_body").append("<div class='adminChatEntry'>" + chatNameDiv + answerDiv + "</div>");
 }
 
 function saveToDb(key, answer, question) {

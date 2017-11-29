@@ -130,31 +130,31 @@ CHAT PAGE
     }
 }
 
-#userChatEntry {
+.userChatEntry {
     text-align: right;
     background-color: #DBF9C4;
     padding-right: 56px;
 }
 
-#adminChatEntry {
+.adminChatEntry {
     text-align: left;
     background-color: #fff;
 }
 
-#userChatEntry, #adminChatEntry {
+.userChatEntry, .adminChatEntry {
     padding: 16px;
     border-radius: 5px;
     border: 1px solid #f0f0f0;
     margin-bottom: 8px;
 }
 
-#chatNameDiv {
+.chatNameDiv {
   font-size: 12px;
   margin-bottom: 10px;
   margin-right: 40px;
 }
 
-#answerDiv {
+.answerDiv {
   font-size: 14px;
   line-height: 16px;
   margin-right: 40px;
