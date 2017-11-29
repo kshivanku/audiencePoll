@@ -115,7 +115,6 @@ function loadPage(page) {
     }
 }
 
-
 //**************************//
 
 function getRandomColor() {

@@ -73,9 +73,13 @@ CHAT PAGE
     color: #fff;
 }
 
+#chat_page_body {
+    margin-bottom: 50px;
+}
+
 @media (max-width: 620px) {
     #chat_page_header {
-        position: absolute;
+        position: static;
         bottom: 0;
         height: 100px;
         width: 100vw;
