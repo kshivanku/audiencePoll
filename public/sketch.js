@@ -24,7 +24,7 @@ var current_question;
 
 
 $(document).ready(function() {
-    loadPage("login");
+    loadPage("login_page");
     $("#usernameForm").submit(function(event) {
         loadPage("question_page");
         username = $("#username").val(); //sets the name of the user as a global variable
@@ -78,8 +78,8 @@ function saveToDb(key, answer, question) {
 
 function loadPage(page) {
     switch (page) {
-        case "login":
-            $("#login").css("display", "block");
+        case "login_page":
+            $("#login_page").css("display", "block");
             $("#chat_page").css("display", "none");
             $("#question_page").css("display", "none");
             break;
