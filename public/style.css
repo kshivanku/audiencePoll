@@ -73,11 +73,6 @@ CHAT PAGE
     color: #fff;
 }
 
-#chat_page_body {
-    margin-bottom: 50px;
-    margin-top: 100px;
-}
-
 @media (max-width: 620px) {
     #chat_page_header {
         position: fixed;
@@ -106,6 +101,10 @@ CHAT PAGE
     #profileText {
       display: inline-block;
     }
+    #chat_page_body {
+        margin-bottom: 50px;
+        margin-top: 100px;
+    }
 }
 
 @media (min-width: 620px) {
@@ -121,6 +120,7 @@ CHAT PAGE
     }
     #chat_page_body {
         float: left;
+        overflow: scroll;
     }
     #profileColor {
         width: 100px;
