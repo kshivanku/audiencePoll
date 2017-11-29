@@ -91,6 +91,7 @@ function loadPage(page) {
             $("#login_page").css("display", "none");
             $("#chat_page").css("display", "block");
             $("#question_page").css("display", "none");
+            break;
         case "question_page":
             console.log("loading question page");
             $("#login_page").css("display", "none");
