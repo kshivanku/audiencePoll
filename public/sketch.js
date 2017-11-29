@@ -49,6 +49,7 @@ $(document).ready(function() {
 
 socket.on('questionData', gotQuestionData);
 function gotQuestionData(data) {
+    console.log(data);
     loadPage("question_page");
     current_question = data;
     $("#question_text").html(data.question_text);
@@ -60,6 +61,7 @@ function gotQuestionData(data) {
 
 socket.on('answerContent', gotAnswerData);
 function gotAnswerData(data) {
+  console.log(data);
   var chatNameDiv = "<div id='chatNameDiv'>" + data.username + "</div>"
   var answerDiv = "<div id='answerDiv'>" + data.answer + "</div>"
   $("#chat_page_body").append(chatNameDiv + answerDiv);
@@ -79,15 +81,18 @@ function saveToDb(key, answer, question) {
 function loadPage(page) {
     switch (page) {
         case "login_page":
+            console.log("loading login page");
             $("#login_page").css("display", "block");
             $("#chat_page").css("display", "none");
             $("#question_page").css("display", "none");
             break;
         case "chat_page":
+            console.log("loading chat page");
             $("#login_page").css("display", "none");
             $("#chat_page").css("display", "block");
             $("#question_page").css("display", "none");
         case "question_page":
+            console.log("loading question page");
             $("#login_page").css("display", "none");
             $("#chat_page").css("display", "none");
             $("#question_page").css("display", "block");
