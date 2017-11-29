@@ -19,7 +19,7 @@ io.sockets.on('connection', function(socket){
   });
   socket.on('answerContent', function(data){
     console.log("got answer content");
-    socket.broadcast.emit('answerContent', data);
+    io.sockets.emit('answerContent', data);
   });
 })
 
