@@ -20,9 +20,12 @@ var username;
 var profileColor;
 var current_question;
 
-
 //**************************//
 
+window.onbeforeunload = function() {
+    console.log("Trying to refresh");
+    return "Refreshing the page will end your session and make us sad. Please don't refresh.";
+}
 
 $(document).ready(function() {
     loadPage("login_page");
@@ -32,7 +35,7 @@ $(document).ready(function() {
         profileColor = getRandomColor();
         $("#chat_page_header h1").html(username);
         $("#profileColor").css('background-color', profileColor);
-        var welcomeMessage = "Welcome " + username + " to the chat group. You will be able to help the Writer in his date by answering simple questions which we will post at regular intervals.";
+        var welcomeMessage = "Welcome <span style='font-weight: bold'>" + username + "</span> to the chat group. You will be able to help the Writer in his date by answering simple questions which we will post at regular intervals.";
         socket.emit('newUserJoined', welcomeMessage);
         return false;
     })
@@ -45,9 +48,9 @@ $(document).ready(function() {
         var answer = current_question[answerKey];
         saveToDb(database.ref("allusers/" + username), answer, question);
         var answerContent = {
-          "username": username,
-          "profileColor": profileColor,
-          "answer": answer
+            "username": username,
+            "profileColor": profileColor,
+            "answer": answer
         }
         socket.emit('answerContent', answerContent);
         return false;
@@ -73,19 +76,19 @@ function gotQuestionData(data) {
 
 socket.on('answerContent', gotAnswerData);
 function gotAnswerData(data) {
-  console.log(data);
-  var chatPicDiv = "<div class='chatPicDiv " + data.username +"DP'></div>"
-  var chatNameDiv = "<div class='chatNameDiv'>" + data.username + "</div>"
-  var answerDiv = "<div class='answerDiv'>" + data.answer + "</div>"
-  $("#chat_body").append("<div class='userChatEntry'>" + chatPicDiv + chatNameDiv + answerDiv + "</div>");
-  $("." + data.username + "DP").css("background-color", data.profileColor);
+    console.log(data);
+    var chatPicDiv = "<div class='chatPicDiv " + data.username + "DP'></div>"
+    var chatNameDiv = "<div class='chatNameDiv'>" + data.username + "</div>"
+    var answerDiv = "<div class='answerDiv'>" + data.answer + "</div>"
+    $("#chat_body").append("<div class='userChatEntry'>" + chatPicDiv + chatNameDiv + answerDiv + "</div>");
+    $("." + data.username + "DP").css("background-color", data.profileColor);
 }
 
 socket.on('welcomeMessage', gotWelcomeMessage);
 function gotWelcomeMessage(data) {
-  var chatNameDiv = "<div class='chatNameDiv'>Admin</div>";
-  var answerDiv = "<div class='answerDiv'>" + data + "</div>";
-  $("#chat_body").append("<div class='adminChatEntry'>" + chatNameDiv + answerDiv + "</div>");
+    var chatNameDiv = "<div class='chatNameDiv'>Admin</div>";
+    var answerDiv = "<div class='answerDiv'>" + data + "</div>";
+    $("#chat_body").append("<div class='adminChatEntry'>" + chatNameDiv + answerDiv + "</div>");
 }
 
 function saveToDb(key, answer, question) {
@@ -93,9 +96,6 @@ function saveToDb(key, answer, question) {
     reqbody[question] = answer;
     key.push(reqbody);
 }
-
-
-
 
 //**************************//
 
@@ -127,10 +127,10 @@ function loadPage(page) {
 //**************************//
 
 function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
 }
