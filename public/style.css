@@ -79,8 +79,8 @@ CHAT PAGE
 
 @media (max-width: 620px) {
     #chat_page_header {
-        position: static;
-        bottom: 0;
+        position: fixed;
+        top: 0;
         height: 100px;
         width: 100vw;
         padding: 10px;
