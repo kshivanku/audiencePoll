@@ -1,42 +1,154 @@
+* {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
 body {
-  font-family: sans-serif;
-  color: #212121;
-  padding: 10px 32px;
-  max-width: 960px;
-  margin: auto;
+    background-color: #f8f8f8;
+    font-family: 'Open Sans', sans-serif;
 }
 
-#login {
-  text-align: center;
+#container {
+    background-color: #f8f8f8;
+    color: #212121;
+    margin: auto;
+    height: 100vh;
+    max-width: 100vw;
 }
 
-#username{
-  height: 30px;
-  width: 300px;
-  display: block;
-  margin: 20px auto;
-  padding: 10px;
-  font-size: 24px;
+h1 {
+    font-size: 24px;
+    line-height: 48px;
+    font-weight: 600;
 }
 
-#enterSurvey {
-  width: 100%;
-  height: 50px;
-  border: 1px solid black;
-  cursor: pointer;
+p {
+    font-size: 14px;
+    line-height: 16px;
 }
 
-#questionForm input {
-  margin: 10px 0 20px 0;
+.padder {
+    padding: 32px 16px 100px 16px;
 }
 
-#questionForm label{
-  margin-left: 10px;
+
+/*
+LOGIN PAGE
+*/
+
+#login_page {
+    text-align: center;
+    max-width: 360px;
+    margin: auto;
 }
+
+#username {
+    height: 60px;
+    width: 100%;
+    display: block;
+    margin: 20px 0;
+    padding: 10px;
+    font-size: 24px;
+}
+
+
+/*
+CHAT PAGE
+*/
+
+#profileColor {
+    border-radius: 100%;
+    border: 4px solid #fff;
+}
+
+#chat_page_header {
+    background-color: #120570;
+    color: #fff;
+}
+
+@media (max-width: 620px) {
+    #chat_page_header {
+        position: absolute;
+        bottom: 0;
+        height: 100px;
+        width: 100vw;
+        padding: 10px;
+    }
+    #chat_page_header h1 {
+      float: left;
+      width: 100%;
+      line-height: 48px;
+    }
+    #chat_page_header ul {
+      float: left;
+      clear: inherit;
+      /*line-height: 48px;*/
+    }
+    #profileColor {
+        width: 48px;
+        height: 48px;
+        display: inline-block;
+        margin-top: 16px;
+        margin-right: 16px;
+    }
+    #profileText {
+      display: inline-block;
+    }
+}
+
+@media (min-width: 620px) {
+    #chat_page_header, #chat_page_body {
+        display: block;
+        width: 50%;
+        height: 100vh;
+    }
+    #chat_page_header {
+        float: right;
+        text-align: center;
+        padding-top: 20vh;
+    }
+    #chat_page_body {
+        float: left;
+    }
+    #profileColor {
+        width: 100px;
+        height: 100px;
+        margin: auto;
+        margin-bottom: 10px;
+    }
+}
+
+
+/*
+FORMS AND BUTTONS
+*/
 
 .submitBtn {
-  display: block;
-  margin: auto;
-  width: 100px;
-  padding: 20px;
+    border-style: outset;
+    border-color: #120570;
+    color: #120570;
+    height: 50px;
+    width: 100px;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: capitalize;
+    text-shadow: none;
+}
+
+.submitBtn:hover {
+    background-color: #120570;
+    color: #fff;
+    cursor: pointer;
+}
+
+input[type=text]:focus, textarea:focus {
+    outline: none;
+    border: 1px solid #120570;
 }

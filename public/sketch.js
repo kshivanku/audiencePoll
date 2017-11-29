@@ -17,6 +17,7 @@ socket = io.connect("https://audiencepoll.herokuapp.com/");
 
 //GLOBAL VARIABLES
 var username;
+var profileColor;
 var current_question;
 
 
@@ -28,6 +29,11 @@ $(document).ready(function() {
     $("#usernameForm").submit(function(event) {
         loadPage("chat_page");
         username = $("#username").val(); //sets the name of the user as a global variable
+        profileColor = getRandomColor();
+        $("#chat_page_header h1").html(username);
+        $("#profileColor").css('background-color', profileColor);
+        var welcomeMessage = "Welcome " + username + " to the chat group. You will be able to help the Writer in his date by answering simple questions which we will post at regular intervals.";
+        socket.emit('newUserJoined', welcomeMessage);
         return false;
     })
 
@@ -53,6 +59,7 @@ function gotQuestionData(data) {
     loadPage("question_page");
     current_question = data;
     $("#question_text").html(data.question_text);
+    $("#chat_page_body").append(data.question_text);
     $("[for=" + $("#option1").attr("id") + "]").html(data.option1);
     $("[for=" + $("#option2").attr("id") + "]").html(data.option2);
     $("[for=" + $("#option3").attr("id") + "]").html(data.option3);
@@ -64,6 +71,13 @@ function gotAnswerData(data) {
   console.log(data);
   var chatNameDiv = "<div id='chatNameDiv'>" + data.username + "</div>"
   var answerDiv = "<div id='answerDiv'>" + data.answer + "</div>"
+  $("#chat_page_body").append(chatNameDiv + answerDiv);
+}
+
+socket.on('welcomeMessage', gotWelcomeMessage);
+function gotWelcomeMessage(data) {
+  var chatNameDiv = "<div id='chatNameDiv'>Admin</div>"
+  var answerDiv = "<div id='answerDiv'>" + data + "</div>"
   $("#chat_page_body").append(chatNameDiv + answerDiv);
 }
 
@@ -99,4 +113,16 @@ function loadPage(page) {
             $("#question_page").css("display", "block");
             break;
     }
+}
+
+
+//**************************//
+
+function getRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
 }
