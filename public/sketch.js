@@ -58,27 +58,33 @@ function gotQuestionData(data) {
     console.log(data);
     loadPage("question_page");
     current_question = data;
+    //For Question Body
     $("#question_text").html(data.question_text);
-    $("#chat_body").append(data.question_text);
     $("[for=" + $("#option1").attr("id") + "]").html(data.option1);
     $("[for=" + $("#option2").attr("id") + "]").html(data.option2);
     $("[for=" + $("#option3").attr("id") + "]").html(data.option3);
     $("[for=" + $("#option4").attr("id") + "]").html(data.option4);
+    //For chat body
+    var chatNameDiv = "<div id='chatNameDiv'>Admin</div>";
+    var answerDiv = "<div id='answerDiv'>" + data.question_text + "</div>";
+    $("#chat_body").append("<div id='adminChatEntry'>" + chatNameDiv + answerDiv + "</div>");
 }
 
 socket.on('answerContent', gotAnswerData);
 function gotAnswerData(data) {
   console.log(data);
+  var chatPicDiv = "<div id='chatPicDiv'></div>"
   var chatNameDiv = "<div id='chatNameDiv'>" + data.username + "</div>"
   var answerDiv = "<div id='answerDiv'>" + data.answer + "</div>"
-  $("#chat_body").append(chatNameDiv + answerDiv);
+  $("#chat_body").append("<div id='userChatEntry'>" + chatPicDiv + chatNameDiv + answerDiv + "</div>");
+  $("#chatPicDiv").css("background-color", profileColor);
 }
 
 socket.on('welcomeMessage', gotWelcomeMessage);
 function gotWelcomeMessage(data) {
-  var chatNameDiv = "<div id='chatNameDiv'>Admin</div>"
-  var answerDiv = "<div id='answerDiv'>" + data + "</div>"
-  $("#chat_body").append(chatNameDiv + answerDiv);
+  var chatNameDiv = "<div id='chatNameDiv'>Admin</div>";
+  var answerDiv = "<div id='answerDiv'>" + data + "</div>";
+  $("#chat_body").append("<div id='adminChatEntry'>" + chatNameDiv + answerDiv + "</div>");
 }
 
 function saveToDb(key, answer, question) {
