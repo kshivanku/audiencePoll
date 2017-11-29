@@ -26,7 +26,7 @@ var current_question;
 $(document).ready(function() {
     loadPage("login_page");
     $("#usernameForm").submit(function(event) {
-        loadPage("question_page");
+        loadPage("chat_page");
         username = $("#username").val(); //sets the name of the user as a global variable
         return false;
     })
@@ -84,11 +84,11 @@ function loadPage(page) {
             $("#question_page").css("display", "none");
             break;
         case "chat_page":
-            $("#login").css("display", "none");
+            $("#login_page").css("display", "none");
             $("#chat_page").css("display", "block");
             $("#question_page").css("display", "none");
         case "question_page":
-            $("#login").css("display", "none");
+            $("#login_page").css("display", "none");
             $("#chat_page").css("display", "none");
             $("#question_page").css("display", "block");
             break;
