@@ -43,6 +43,7 @@ $(document).ready(function() {
     $("#questionForm").submit(function(event) {
         event.preventDefault();
         loadPage("chat_page");
+        window.scrollTo(0,document.body.scrollHeight);
         var answerKey = $('input[name=option]:checked').attr('id');
         var question = current_question.question_text;
         var answer = current_question[answerKey];
