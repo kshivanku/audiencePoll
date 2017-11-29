@@ -17,6 +17,10 @@ io.sockets.on('connection', function(socket){
     console.log("got question data");
     socket.broadcast.emit('questionData', data);
   });
+  socket.on('answerContent', function(data){
+    console.log("got answer content");
+    socket.broadcast.emit('answerContent', data);
+  });
 })
 
 
