@@ -46,6 +46,7 @@ $(document).ready(function() {
         saveToDb(database.ref("allusers/" + username), answer, question);
         var answerContent = {
           "username": username,
+          "profileColor": profileColor,
           "answer": answer
         }
         socket.emit('answerContent', answerContent);
@@ -77,7 +78,7 @@ function gotAnswerData(data) {
   var chatNameDiv = "<div id='chatNameDiv'>" + data.username + "</div>"
   var answerDiv = "<div id='answerDiv'>" + data.answer + "</div>"
   $("#chat_body").append("<div id='userChatEntry'>" + chatPicDiv + chatNameDiv + answerDiv + "</div>");
-  $("#chatPicDiv").css("background-color", profileColor);
+  $("#chatPicDiv").css("background-color", data.profileColor);
 }
 
 socket.on('welcomeMessage', gotWelcomeMessage);
