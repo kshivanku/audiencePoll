@@ -160,7 +160,7 @@ CHAT PAGE
   margin-right: 40px;
 }
 
-#chatPicDiv {
+.chatPicDiv {
   float: right;
   border-radius: 100%;
   border: 2px solid white;

@@ -74,11 +74,11 @@ function gotQuestionData(data) {
 socket.on('answerContent', gotAnswerData);
 function gotAnswerData(data) {
   console.log(data);
-  var chatPicDiv = "<div id='chatPicDiv'></div>"
+  var chatPicDiv = "<div class='chatPicDiv' id= "+ data.username +"DP></div>"
   var chatNameDiv = "<div id='chatNameDiv'>" + data.username + "</div>"
   var answerDiv = "<div id='answerDiv'>" + data.answer + "</div>"
   $("#chat_body").append("<div id='userChatEntry'>" + chatPicDiv + chatNameDiv + answerDiv + "</div>");
-  $("#chatPicDiv").css("background-color", data.profileColor);
+  $("#" + data.username + "DP").css("background-color", data.profileColor);
 }
 
 socket.on('welcomeMessage', gotWelcomeMessage);
