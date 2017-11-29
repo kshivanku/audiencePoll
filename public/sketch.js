@@ -59,7 +59,7 @@ function gotQuestionData(data) {
     loadPage("question_page");
     current_question = data;
     $("#question_text").html(data.question_text);
-    $("#chat_page_body").append(data.question_text);
+    $("#chat_body").append(data.question_text);
     $("[for=" + $("#option1").attr("id") + "]").html(data.option1);
     $("[for=" + $("#option2").attr("id") + "]").html(data.option2);
     $("[for=" + $("#option3").attr("id") + "]").html(data.option3);
@@ -71,14 +71,14 @@ function gotAnswerData(data) {
   console.log(data);
   var chatNameDiv = "<div id='chatNameDiv'>" + data.username + "</div>"
   var answerDiv = "<div id='answerDiv'>" + data.answer + "</div>"
-  $("#chat_page_body").append(chatNameDiv + answerDiv);
+  $("#chat_body").append(chatNameDiv + answerDiv);
 }
 
 socket.on('welcomeMessage', gotWelcomeMessage);
 function gotWelcomeMessage(data) {
   var chatNameDiv = "<div id='chatNameDiv'>Admin</div>"
   var answerDiv = "<div id='answerDiv'>" + data + "</div>"
-  $("#chat_page_body").append(chatNameDiv + answerDiv);
+  $("#chat_body").append(chatNameDiv + answerDiv);
 }
 
 function saveToDb(key, answer, question) {
@@ -98,19 +98,21 @@ function loadPage(page) {
             console.log("loading login page");
             $("#login_page").css("display", "block");
             $("#chat_page").css("display", "none");
-            $("#question_page").css("display", "none");
+            $("#question_body").css("display", "none");
             break;
         case "chat_page":
             console.log("loading chat page");
             $("#login_page").css("display", "none");
             $("#chat_page").css("display", "block");
-            $("#question_page").css("display", "none");
+            $("#chat_body").css("display", "block");
+            $("#question_body").css("display", "none");
             break;
         case "question_page":
             console.log("loading question page");
             $("#login_page").css("display", "none");
-            $("#chat_page").css("display", "none");
-            $("#question_page").css("display", "block");
+            $("#chat_page").css("display", "block");
+            $("#chat_body").css("display", "none");
+            $("#question_body").css("display", "block");
             break;
     }
 }

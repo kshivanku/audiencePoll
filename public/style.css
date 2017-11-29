@@ -101,14 +101,14 @@ CHAT PAGE
     #profileText {
       display: inline-block;
     }
-    #chat_page_body {
+    #chat_body {
         margin-bottom: 50px;
         margin-top: 100px;
     }
 }
 
 @media (min-width: 620px) {
-    #chat_page_header, #chat_page_body {
+    #chat_page_header, #chat_body {
         display: block;
         width: 50%;
         height: 100vh;
@@ -118,7 +118,7 @@ CHAT PAGE
         text-align: center;
         padding-top: 20vh;
     }
-    #chat_page_body {
+    #chat_body {
         float: left;
         overflow: scroll;
     }
