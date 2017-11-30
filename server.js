@@ -26,6 +26,10 @@ io.sockets.on('connection', function(socket) {
         //send the answer content to all connections including the sending client
         io.sockets.emit('userChatMessage', data);
     });
+    socket.on('audienceReaction', function(data) {
+        console.log("got reaction data from admin");
+        socket.broadcast.emit('adminChatMessage', data);
+    });
 })
 
 //HAVE TO USE BODY PARSER TO MAKE A POST REQUEST
