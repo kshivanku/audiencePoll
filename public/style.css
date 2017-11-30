@@ -118,7 +118,7 @@ CHAT PAGE
 }
 
 @media (min-width: 620px) {
-    #chat_page_header, #chat_body {
+    #chat_page_header, #chat_body, #question_body {
         display: block;
         width: 50%;
         height: 100vh;
@@ -129,6 +129,10 @@ CHAT PAGE
         padding-top: 20vh;
     }
     #chat_body {
+        float: left;
+        overflow: scroll;
+    }
+    #question_body {
         float: left;
         overflow: scroll;
     }
