@@ -30,10 +30,10 @@ h1 {
 }
 
 h2 {
-  font-size: 18px;
-  line-height: 32px;
-  font-weight: 600;
-  margin-bottom: 16px;
+    font-size: 18px;
+    line-height: 32px;
+    font-weight: 600;
+    margin-bottom: 16px;
 }
 
 p, li {
@@ -113,7 +113,7 @@ CHAT PAGE
         margin-top: 100px;
     }
     #questionForm {
-      margin-top: 88px;
+        margin-top: 88px;
     }
 }
 
@@ -159,31 +159,34 @@ CHAT PAGE
 }
 
 .chatNameDiv {
-  font-size: 12px;
-  margin-bottom: 10px;
-  margin-right: 40px;
+    font-size: 12px;
+    margin-bottom: 10px;
+    margin-right: 40px;
 }
 
 .chatMessageDiv {
-  font-size: 14px;
-  line-height: 16px;
-  margin-right: 40px;
+    font-size: 14px;
+    line-height: 16px;
+    margin-right: 40px;
 }
 
 .chatPicDiv {
-  float: right;
-  border-radius: 100%;
-  border: 2px solid white;
-  width: 24px;
-  height: 24px;
+    float: right;
+    border-radius: 100%;
+    border: 2px solid white;
+    width: 24px;
+    height: 24px;
 }
+
 
 /*
 QUEST BODY
 */
+
 .radio_options {
-  margin: 16px 8px;
+    margin: 16px 8px;
 }
+
 
 /*
 FORMS AND BUTTONS

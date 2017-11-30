@@ -13,9 +13,9 @@ var io = socket(server);
 //Handeling socket connections
 io.sockets.on('connection', function(socket) {
     console.log('connected: ' + socket.id);
-    socket.on('newUserJoined', function(data){
-      console.log("new user joined");
-      io.sockets.emit('adminChatMessage', data);
+    socket.on('newUserJoined', function(data) {
+        console.log("new user joined");
+        io.sockets.emit('adminChatMessage', data);
     });
     socket.on('questionData', function(data) {
         console.log("got question data");

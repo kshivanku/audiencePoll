@@ -44,7 +44,7 @@ $(document).ready(function() {
     $("#questionForm").submit(function(event) {
         event.preventDefault();
         loadPage("chat_page");
-        window.scrollTo(0,document.body.scrollHeight);
+        window.scrollTo(0, document.body.scrollHeight);
         var answerKey = $('input[name=option]:checked').attr('id');
         var question = current_question.question_text;
         var answer = current_question[answerKey];
@@ -72,10 +72,6 @@ function gotQuestionData(data) {
     $("[for=" + $("#option4").attr("id") + "]").html(data.option4);
     //For chat body
     gotAdminChatMessage(data.question_text);
-
-    // var chatNameDiv = "<div class='chatNameDiv'>Admin</div>";
-    // var chatMessageDiv = "<div class='chatMessageDiv'>" + data.question_text + "</div>";
-    // $("#chat_body").append("<div class='adminChatEntry'>" + chatNameDiv + chatMessageDiv + "</div>");
 }
 
 socket.on('userChatMessage', gotUserChatMessage);
