@@ -61,6 +61,7 @@ $(document).ready(function() {
 
 socket.on('questionData', gotQuestionData);
 function gotQuestionData(data) {
+    navigator.vibrate([500]);
     console.log(data);
     loadPage("question_page");
     current_question = data;
