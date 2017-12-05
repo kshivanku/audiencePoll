@@ -36,7 +36,7 @@ $(document).ready(function() {
         profileColor = getRandomColor();
         $("#chat_page_header h1").html(username);
         $("#profileColor").css('background-color', profileColor);
-        var welcomeMessage = "Welcome <span style='font-weight: bold'>" + username + "</span> to the chat group. You will be able to help the Writer in his date by answering simple questions which we will post at regular intervals.";
+        var welcomeMessage = "Welcome <span style='font-weight: bold'>" + username + "</span> to the chat group. Please wait for a question.";
         socket.emit('newUserJoined', welcomeMessage);
         return false;
     })
@@ -61,7 +61,11 @@ $(document).ready(function() {
 
 socket.on('questionData', gotQuestionData);
 function gotQuestionData(data) {
-    navigator.vibrate([500]);
+    var canVibrate = "vibrate" in navigator || "mozVibrate" in navigator;
+    if (canVibrate && !("vibrate" in navigator)){
+      navigator.vibrate = navigator.mozVibrate;
+      navigator.vibrate([500]);
+    }
     console.log(data);
     loadPage("question_page");
     current_question = data;
