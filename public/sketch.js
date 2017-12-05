@@ -87,6 +87,7 @@ function gotUserChatMessage(data) {
 
 socket.on('adminChatMessage', gotAdminChatMessage);
 function gotAdminChatMessage(data) {
+    navigator.vibrate([500]);
     var chatNameDiv = "<div class='chatNameDiv'>Researcher</div>";
     var chatMessageDiv = "<div class='chatMessageDiv'>" + data + "</div>";
     $("#chat_body").append("<div class='adminChatEntry'>" + chatNameDiv + chatMessageDiv + "</div>");
