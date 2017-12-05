@@ -197,9 +197,11 @@ FORMS AND BUTTONS
 */
 
 .submitBtn {
+    background-color: #120570;
+    border-radius: 5px;
     border-style: outset;
     border-color: #120570;
-    color: #120570;
+    color: #fff;
     height: 50px;
     width: 100px;
     font-size: 14px;
@@ -210,8 +212,8 @@ FORMS AND BUTTONS
 }
 
 .submitBtn:hover {
-    background-color: #120570;
-    color: #fff;
+    background-color: #fff;
+    color: #120570;
     cursor: pointer;
 }
 
